@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set Release Version
-        run: echo "RELEASE_VERSION=20" >> $GITHUB_ENV
+        run: echo "RELEASE_VERSION=21" >> $GITHUB_ENV
 
       - name: Checkout the repository
         uses: actions/checkout@v3
@@ -32,7 +32,7 @@ jobs:
         uses: actions/create-release@v1
         with:
           tag_name: "v${{ env.RELEASE_VERSION }}"
-          release_name: "Release v${{ env.RELEASE_VERSION }}"
+          release_name: "Release v${{ env.RELEASE_VERSION }} - ${{ env.JIRA_TICKET_NAME }}"
           body: "This is the release for version ${{ env.RELEASE_VERSION }}."
           draft: false
           prerelease: false
