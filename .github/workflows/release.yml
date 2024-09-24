@@ -6,22 +6,19 @@ on:
 jobs:
   create_release:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
 
       - name: Debug release version
-        run: echo "Creating release for version: $RELEASE_VERSION"
-        env:
-          RELEASE_VERSION: ${{ github.event.inputs.release_version }}
+        run: echo "Creating release for version 20"
 
       - name: Create GitHub Release
         uses: actions/create-release@v1
         with:
-          tag_name: "${{ github.event.inputs.release_version }}"
-          release_name: "${{ github.event.inputs.release_version }}"
-          body: "Release for version ${{ github.event.inputs.release_version }}"
+          tag_name: "test tag"
+          release_name: "test release"
+          body: "A release"
           draft: false
           prerelease: false
         env:
