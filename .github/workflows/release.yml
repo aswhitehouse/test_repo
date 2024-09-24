@@ -17,7 +17,7 @@ jobs:
         run: echo "Creating release for version ${{ env.RELEASE_VERSION }}"
 
       - name: Create GitHub Release
-        uses: actions/create-release@v3
+        uses: actions/create-release@v1
         with:
           tag_name: "v${{ env.RELEASE_VERSION }}"
           release_name: "Release v${{ env.RELEASE_VERSION }}"
