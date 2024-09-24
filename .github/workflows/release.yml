@@ -13,6 +13,18 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v3
 
+      - name: Fetch JIRA Ticket Name
+        id: jira
+        run: |
+          response=$(curl -s -u andrewswhitehouse@gmail.com:${{ secrets.JIRA_TOKEN }} \
+            -X GET "https://andrewswhitehouse.atlassian.net/rest/api/3/issue/TRAC-1" \
+            -H "Accept: application/json")
+
+          ticket_name=$(echo $response | jq -r '.fields.summary')
+          echo "JIRA_TICKET_NAME=$ticket_name" >> $GITHUB_ENV
+        env:
+          JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
+
       - name: Debug release version
         run: echo "Creating release for version ${{ env.RELEASE_VERSION }}"
 
