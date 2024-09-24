@@ -22,4 +22,4 @@ jobs:
           draft: false
           prerelease: false
         env:
-          JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
