@@ -7,19 +7,23 @@ jobs:
   create_release:
     runs-on: ubuntu-latest
     steps:
+      - name: Set Release Version
+        run: echo "RELEASE_VERSION=20" >> $GITHUB_ENV
+
       - name: Checkout the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Debug release version
-        run: echo "Creating release for version 20"
+        run: echo "Creating release for version ${{ env.RELEASE_VERSION }}"
 
       - name: Create GitHub Release
-        uses: actions/create-release@v1
+        uses: actions/create-release@v3
         with:
-          tag_name: "test tag"
-          release_name: "test release"
-          body: "A release"
+          tag_name: "v${{ env.RELEASE_VERSION }}"
+          release_name: "Release v${{ env.RELEASE_VERSION }}"
+          body: "This is the release for version ${{ env.RELEASE_VERSION }}."
           draft: false
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
